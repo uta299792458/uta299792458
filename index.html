@@ -1,0 +1,61 @@
+<head>
+<meta charset = "UTF-8">
+</head>
+
+<style>
+.diet_form {
+    background: #eaf4ff;
+    padding: 10px 30px;
+}
+form dl dt {
+    width: 200px;
+    height: 40px;
+    padding: 10px 0;
+    line-height: 40px;
+    float: left;
+}
+form dl dd {
+    padding: 10px 0;
+    margin: 0;
+}
+.box {
+    box-sizing: border-box;
+    width: 150px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+}
+.calc-btn {
+    width: 80px;
+    height: 30px;
+    border: 1px solid #333;
+}
+.calc-btn:hover {
+    cursor: pointer;
+}
+</style>
+
+<form class="diet_form">
+    <dl>
+        <dt>たかさ(cm)：</dt>
+        <dd><input type="number" class="box" name="h"></dd>
+        <dt>おもさ(kg)：</dt>
+        <dd><input type="number" class="box" name="w"></dd>
+        <p><input type="button" class="calc-btn" onclick="calc(h.value, w.value);" value="算出"></p>
+        <dt>こうげき（/10点）：</dt>
+        <dd><input id="b" class="box" type="text" readonly=""></dd>
+        <dt>ぼうぎょ（/10点）：</dt>
+        <dd><input id="d" class="box" type="text" readonly=""></dd>
+        <dt>なかよし（/10点）：</dt>
+        <dd><input id="s" class="box" type="text" readonly=""></dd>
+
+    </dl>
+</form>
+
+<script>
+    function calc(h, w) {
+        const b_value = document.getElementById('b').value = 10-Math.abs((h*h-w*w)/1000-19.125);
+        const d_value = document.getElementById('d').value = 10-Math.abs((h*h-165*165)/1000);
+        const s_value = document.getElementById('s').value = (b_value * 2 + d_value)/3;
+    }
+</script>
